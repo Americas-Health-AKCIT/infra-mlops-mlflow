@@ -1,0 +1,17 @@
+**/.terraform/*
+
+**/*tfstate*
+*.tfstate.*
+
+**/*override.tf*
+
+**/*.terraformrc*
+**/*terraform.rc*
+
+.terraform.lock.hcl
+
+**/*.zip
+
+start.cmd
+
+terraform.exe

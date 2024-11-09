@@ -1,0 +1,4 @@
+[submodule "infra-modules"]
+	path = infra-modules
+	url = git@github.com:Americas-Health-AKCIT/infra-modules.git
+	branch = production
