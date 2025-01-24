@@ -9,7 +9,7 @@ on:
 
 jobs:
   run_deploy:
-    uses: Americas-Health-AKCIT/infra-pipelines/.github/workflows/terraform.yml@main
+    uses: Americas-Health-AKCIT/infra-pipelines/.github/workflows/terraform.yml@production
     with:
       environment: ${{ github.ref_name }}
     secrets: inherit
