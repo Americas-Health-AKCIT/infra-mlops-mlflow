@@ -11,9 +11,9 @@ module "ecs"  {
     services = [
         {
             name = "${var.project_name}-tracker-${terraform.workspace}"
-            memory = 512
-            cpu = 256
-            ports = [5000]
+            memory = 512*4
+            cpu = 256*4
+            ports = [5000, 80]
             subnet_ids = var.dmz_subnets
             environment_variables = [
                 {
@@ -34,13 +34,15 @@ module "ecs"  {
                 read_only = false
             }
             iam_policy = templatefile("${path.module}/policies/ecs/${var.project_name}/${var.project_name}-policie.json", {
-                BUCKET_NAME = var.bucket_name
+                BUCKET_NAME = "${var.bucket_name}-${terraform.workspace}"
             })
             discovery_service = true
+            public_ip = true
             load_balancers = {
                 subnet_ids = var.dmz_subnets
-                internal = true
+                internal = false
                 target_port = 5000
+                port = 80
                 health_check = {
                     enabled = true
                     port = 5000
@@ -55,7 +57,7 @@ module "ecs"  {
             name = "${var.project_name}-model-${terraform.workspace}"
             memory = 8192*2
             cpu = 4096*2
-            ports = [8501]
+            ports = [8501, 80]
             subnet_ids = var.dmz_subnets
             environment_variables = [
                 {
@@ -72,14 +74,15 @@ module "ecs"  {
                 read_only = false
             }
             iam_policy = templatefile("${path.module}/policies/ecs/${var.project_name}/${var.project_name}-policie.json", {
-                BUCKET_NAME = var.bucket_name
+                BUCKET_NAME = "${var.bucket_name}-${terraform.workspace}"
             })
             discovery_service = true
             public_ip = true
             load_balancers = {
                 subnet_ids = var.dmz_subnets
-                internal = true
+                internal = false
                 target_port = 8501
+                port = 80
                 health_check = {
                     enabled = true
                     port = 8501

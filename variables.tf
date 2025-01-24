@@ -37,3 +37,9 @@ variable "db_port" {
   description = "Port of RDS Server"
   default = 3306
 }
+
+variable "datasets_bucket_name" {
+  type        = string
+  description = "A unique name for this application (e.g. mlflow-team-name)"
+  default = "amh-mlops-datasets"
+}
