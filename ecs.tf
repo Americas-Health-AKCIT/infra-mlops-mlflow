@@ -94,7 +94,7 @@ module "ecs"  {
             }
         },
         {
-            name = "agente-jair-autorizacao"
+            name = "agente-jair-autorizacao-${terraform.workspace}"
             memory = 8192*2
             cpu = 4096*2
             ports = [8501, 80]
