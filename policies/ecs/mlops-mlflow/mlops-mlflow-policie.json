@@ -34,54 +34,6 @@
         {
             "Effect": "Allow",
             "Action": [
-                "s3:*",
-                "s3-object-lambda:*"
-            ],
-            "Resource": "arn:aws:s3:::qar-dump-prd"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:*",
-                "s3-object-lambda:*"
-            ],
-            "Resource": "arn:aws:s3:::qar-dump-prd/*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:*",
-                "s3-object-lambda:*"
-            ],
-            "Resource": "arn:aws:s3:::qar-dump"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:*",
-                "s3-object-lambda:*"
-            ],
-            "Resource": "arn:aws:s3:::qar-dump/*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:*",
-                "s3-object-lambda:*"
-            ],
-            "Resource": "arn:aws:s3:::vision-docs-mlflow"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:*",
-                "s3-object-lambda:*"
-            ],
-            "Resource": "arn:aws:s3:::vision-docs-mlflow/*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
                 "sqs:GetQueueUrl",
                 "sqs:SendMessage"
             ],

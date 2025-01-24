@@ -2,7 +2,7 @@
 
 resource "aws_db_subnet_group" "rds" {
     name = "subnetgroup-rds-${var.project_name}"
-    subnet_ids = var.db_subnets
+    subnet_ids = var.dmz_subnets
 }
 
 resource "aws_security_group" "sg_rds" {

@@ -3,19 +3,9 @@ variable "vpc_id" {
   description = "VPC Id"
 }
 
-variable "app_subnets" {
-  type        = list(string)
-  description = "List of private Subnets"
-}
-
 variable "dmz_subnets" {
   type        = list(string)
   description = "List of public Subnets"
-}
-
-variable "db_subnets" {
-  type        = list(string)
-  description = "List of isolateds Subnets"
 }
 
 variable "project_name" {
