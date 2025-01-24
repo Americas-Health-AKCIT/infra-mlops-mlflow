@@ -93,5 +93,45 @@ module "ecs"  {
                 }
             }
         },
+        {
+            name = "agente-jair-autorizacao"
+            memory = 8192*2
+            cpu = 4096*2
+            ports = [8501, 80]
+            subnet_ids = var.dmz_subnets
+            environment_variables = [
+                {
+                    "name": "WORKSPACE",
+                    "value": terraform.workspace
+                },
+                {
+                    "name" = "BUCKET"
+                    "value" = "s3://${var.bucket_name}"
+                }
+            ]
+            security_options = {
+                linux_parameters = null
+                read_only = false
+            }
+            iam_policy = templatefile("${path.module}/policies/ecs/${var.project_name}/${var.project_name}-policie.json", {
+                BUCKET_NAME = "${var.bucket_name}-${terraform.workspace}"
+            })
+            discovery_service = true
+            public_ip = true
+            load_balancers = {
+                subnet_ids = var.dmz_subnets
+                internal = false
+                target_port = 8501
+                port = 80
+                health_check = {
+                    enabled = true
+                    port = 8501
+                    matcher = "200-399"
+                    path = "/"
+                    timeout = 30
+                    interval = 60
+                }
+            }
+        }
     ]
 }
