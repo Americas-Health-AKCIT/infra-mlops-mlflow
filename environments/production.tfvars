@@ -8,3 +8,4 @@ dmz_subnets = [
 ]
 
 vpc_id = "vpc-02459b0bebb595e23"
+
