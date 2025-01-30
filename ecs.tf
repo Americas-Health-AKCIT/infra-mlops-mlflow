@@ -105,16 +105,65 @@ module "ecs"  {
                     "value": terraform.workspace
                 },
                 {
-                    "name" = "BUCKET"
-                    "value" = "s3://${var.bucket_name}"
+                    "name": "BUCKET_DATASETS",
+                    "value": "s3://${aws_s3_bucket.datasets_bucket.bucket}"
+                },
+                {
+                    "name": "OPENAI_API_KEY",
+                    "value": var.agent_openai_api_key
+                },
+                {
+                    "name": "DATA_PATH",
+                    "value": var.agent_data_path
+                },
+                {
+                    "name": "MISTRAL_API_KEY",
+                    "value": var.agent_mistral_api_key
+                },
+                {
+                    "name": "JUDGE_MODEL",
+                    "value": var.agent_judge_model
+                },
+                {
+                    "name": "FEEDBACK_ADRESS",
+                    "value": var.agent_feedback_address
+                },
+                {
+                    "name": "FEEDBACK_PORT",
+                    "value": tostring(var.agent_feedback_port)
+                },
+                {
+                    "name": "REQUISICOES_ADRESS_OR_PATH",
+                    "value": var.agent_requisicoes_path
+                },
+                {
+                    "name": "REQUISICOES_PORT",
+                    "value": tostring(var.agent_requisicoes_port)
+                },
+                {
+                    "name": "QDRANT_API_KEY",
+                    "value": var.agent_qdrant_api_key
+                },
+                {
+                    "name": "MLFLOW_TRACK_URI",
+                    "value": "http://${var.project_name}-tracker-${terraform.workspace}.${var.project_name}-tracker-${terraform.workspace}.local:5000"
+                },
+                {
+                    "name": "QDRANT_URL",
+                    "value": var.agent_qdrant_url
+                },
+                {
+                    "name": "FIREBASE_WEB_API_KEY",
+                    "value": var.firebase_api_key
                 }
             ]
             security_options = {
                 linux_parameters = null
                 read_only = false
             }
-            iam_policy = templatefile("${path.module}/policies/ecs/${var.project_name}/${var.project_name}-policie.json", {
-                BUCKET_NAME = "${var.bucket_name}-${terraform.workspace}"
+            iam_policy = templatefile("${path.module}/policies/ecs/${var.project_name}/agent-jair-police.json", {
+                BUCKET_NAME = "${aws_s3_bucket.artifact_bucket.bucket}"
+                DATASETS_BUCKET_NAME = "${aws_s3_bucket.datasets_bucket.bucket}"
             })
             discovery_service = true
             public_ip = true
