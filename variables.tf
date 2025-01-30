@@ -108,3 +108,63 @@ variable "firebase_api_key" {
   description = "Firebase API Key"
   sensitive   = true
 }
+
+variable "firebase_project_id" {
+  type        = string
+  description = "Firebase project ID"
+  default     = "login-jair-amh-ceia"
+}
+
+variable "firebase_private_key_id" {
+  type        = string
+  description = "Firebase private key ID"
+  sensitive   = true
+}
+
+variable "firebase_private_key" {
+  type        = string
+  description = "Firebase private key"
+  sensitive   = true
+}
+
+variable "firebase_client_email" {
+  type        = string
+  description = "Firebase client email"
+  default     = "firebase-adminsdk-fbsvc@login-jair-amh-ceia.iam.gserviceaccount.com"
+}
+
+variable "firebase_client_id" {
+  type        = string
+  description = "Firebase client ID"
+  default     = "116412145785513528524"
+}
+
+variable "firebase_auth_uri" {
+  type        = string
+  description = "Firebase auth URI"
+  default     = "https://accounts.google.com/o/oauth2/auth"
+}
+
+variable "firebase_token_uri" {
+  type        = string
+  description = "Firebase token URI"
+  default     = "https://oauth2.googleapis.com/token"
+}
+
+variable "firebase_auth_provider_x509_cert_url" {
+  type        = string
+  description = "Firebase auth provider x509 cert URL"
+  default     = "https://www.googleapis.com/oauth2/v1/certs"
+}
+
+variable "firebase_client_x509_cert_url" {
+  type        = string
+  description = "Firebase client x509 cert URL"
+  default     = "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40login-jair-amh-ceia.iam.gserviceaccount.com"
+}
+
+variable "firebase_universe_domain" {
+  type        = string
+  description = "Firebase universe domain"
+  default     = "googleapis.com"
+}

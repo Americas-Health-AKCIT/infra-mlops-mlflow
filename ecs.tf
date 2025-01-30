@@ -155,6 +155,10 @@ module "ecs"  {
                 {
                     "name": "FIREBASE_WEB_API_KEY",
                     "value": var.firebase_api_key
+                },
+                {
+                    "name": "FIREBASE_SERVICE_ACCOUNT_SECRET_ARN",
+                    "value": aws_secretsmanager_secret.firebase_service_account.arn
                 }
             ]
             security_options = {
@@ -164,6 +168,7 @@ module "ecs"  {
             iam_policy = templatefile("${path.module}/policies/ecs/${var.project_name}/agent-jair-police.json", {
                 BUCKET_NAME = "${aws_s3_bucket.artifact_bucket.bucket}"
                 DATASETS_BUCKET_NAME = "${aws_s3_bucket.datasets_bucket.bucket}"
+                PROJECT_NAME = "${var.project_name}"
             })
             discovery_service = true
             public_ip = true

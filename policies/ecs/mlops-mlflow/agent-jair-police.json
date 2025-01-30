@@ -96,6 +96,15 @@
                     ]
                 }
             }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:GetSecretValue"
+            ],
+            "Resource": [
+                "arn:aws:secretsmanager:*:*:secret:${PROJECT_NAME}-firebase-service-account-*"
+            ]
         }
     ]
 }
